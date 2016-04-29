@@ -1,0 +1,56 @@
+<?php
+/**
+ * @file
+ * An Islandora module for downloading PDF datastreams on objects.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_pdf_download_menu() {
+  $items = array();
+  $items['islandora/object/%islandora_object/pdf_download'] = array(
+    'title' => 'Download PDF',
+    'access callback' => 'islandora_pdf_download_access',
+    'access arguments' => array(ISLANDORA_VIEW_OBJECTS, 2),
+    'page callback' => 'islandora_pdf_download_pdf',
+    'page arguments' => array(2),
+    'file' => 'includes/pdf_download.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Islandora PDF Download tab access callback.
+ *
+ * @param string $op
+ *   String identifying an operation to check.
+ * @param AbstractObject $islandora_object
+ *   Instance of an islandora object.
+ *
+ * @return bool
+ *   TRUE if permission is granted, FALSE otherwise.
+ */
+function islandora_pdf_download_access($op, AbstractObject $islandora_object) {
+  if (!isset($islandora_object['PDF'])) {
+    return FALSE;
+  }
+  return islandora_datastream_access($op, $islandora_object['PDF']);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function islandora_pdf_download_theme() {
+  return array(
+    'islandora_pdf_download' => array(
+      'template' => 'theme/islandora-pdf-download',
+      'variables' => array(
+        'islandora_object' => NULL,
+        'message' => NULL,
+      ),
+      'file' => 'theme/theme.inc',
+    ),
+  );
+}

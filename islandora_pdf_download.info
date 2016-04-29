@@ -1,0 +1,6 @@
+name = "Islandora PDF Download"
+description = "This module provides a download tab for all objects with a PDF datastream."
+package = Islandora Tools
+dependencies[] = islandora
+version = 7.x-dev
+core = 7.x
