@@ -5,7 +5,7 @@
  */
 
 /**
- * Implements hool_preprocess().
+ * Implements hook_preprocess_theme().
  */
 function islandora_pdf_download_preprocess_islandora_pdf_download(&$variables) {
   drupal_add_js(
