@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module provides a download tab labeled 'Download PDF' to any object with a datastream available for download
+This module provides a download tab labeled 'Download PDF' to any object with a PDF datastream available for download
 
 ## Requirements
 
